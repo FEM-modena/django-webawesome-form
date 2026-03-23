@@ -1,3 +1,5 @@
+from django.forms import CharFieldfrom django.forms import Form
+
 # django-webawesome-form
 
 django-webawesome-form is a Django app that provides a custom form renderer for WebAwesome 
@@ -73,6 +75,23 @@ class SearchForm(Form):
     search_text = CharField(label="", required=False)
     include_deleted = BooleanField(widget=SwitchInput())
 
+```
+
+### Use regular, non Custom, HTML Elements
+Since this form renderer introduces significant changes in how the HTML elements are rendered, 
+you can "opt out" from this behavior by setting the attribute `is_web_component` to `False` on 
+the widget class. You can then use regular, not custom, HTML Elements.
+
+```python
+from django.forms import Form, CharField
+from django.forms.widgets import Widget
+
+class MyWidget(Widget):
+   is_web_component = False
+   ...
+
+class MyForm(Form):
+    my_field = CharField(widget=MyWidget())
 ```
 
 ## Dependencies
