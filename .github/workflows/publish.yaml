@@ -8,6 +8,11 @@ jobs:
   publish:
     name: Build and publish distribution package
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
     - uses: actions/checkout@v6
