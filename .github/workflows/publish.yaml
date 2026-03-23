@@ -5,8 +5,8 @@ on:
       - v*
 
 jobs:
-  build:
-    name: Build distribution 📦
+  publish:
+    name: Build and publish distribution package
     runs-on: ubuntu-latest
 
     steps:
