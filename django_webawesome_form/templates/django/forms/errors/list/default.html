@@ -1,0 +1,2 @@
+{% if errors %}<div class="{{ error_class }}"{% if errors.field_id %} id="{{ errors.field_id }}_error"{% endif %}>{% for error in errors %}<wa-callout variant="warning" appearance="filled">{{ error }}</wa-callout>{% endfor %}</div>
+{% endif %}

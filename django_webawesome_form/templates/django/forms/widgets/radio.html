@@ -1,0 +1,8 @@
+{% with id=widget.attrs.id %}
+  <wa-radio-group{% if id %} id="{{ id }}"{% endif %}{% if widget.attrs.class %}
+                             class="{{ widget.attrs.class }}"{% endif %} name="{{ widget.name }}"{% if value != None %}
+                             value="{{ value }}"{% endif %}{% include "django/forms/widgets/attrs.html" %}>{% include "django/forms/widgets/slots.html" %}
+    {% for group, options, index in widget.optgroups %}{% for option in options %}
+      <wa-radio{% if widget.attrs.use_buttons %} appearance="button"{% endif %} value="{{ option.value|stringformat:'s' }}"{% include "django/forms/widgets/attrs.html" with widget=option %}>{{ option.label }}</wa-radio>
+    {% endfor %}{% endfor %}
+  </wa-radio-group>{% endwith %}

@@ -1,0 +1,5 @@
+<wa-select name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>{% include "django/forms/widgets/slots.html" %}{% for group_name, group_choices, group_index in widget.optgroups %}{% if group_name %}
+  <small>{{ group_name }}</small>{% endif %}{% for option in group_choices %}
+  {% include option.template_name with widget=option %}{% endfor %}{% if group_name %}
+  <wa-divider></wa-divider>{% endif %}{% endfor %}
+</wa-select>

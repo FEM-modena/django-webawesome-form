@@ -1,0 +1,1 @@
+{% for slot, content in widget.slots.items %}{% if content %}<div slot="{{ slot }}">{{ content|safe }}</div>{% endif %}{% endfor %}

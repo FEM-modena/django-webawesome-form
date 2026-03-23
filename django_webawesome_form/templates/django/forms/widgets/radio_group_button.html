@@ -1,0 +1,3 @@
+<wa-radio-group name="{{ widget.name }}"{% if value != None %} value="{{ value }}"{% endif %}{% include "django/forms/widgets/attrs.html" %}>{% include "django/forms/widgets/slots.html" %}
+{% for group, options, index in widget.optgroups %}{% for option in options %}<wa-radio appearance="button" value="{{ option.value|stringformat:'s' }}"{% include "django/forms/widgets/attrs.html" with widget=option %}>{{ option.label }}</wa-radio>{% endfor %}{% endfor %}
+</wa-radio-group>
