@@ -1,5 +1,3 @@
-from django.forms import CharFieldfrom django.forms import Form
-
 # django-webawesome-form
 
 django-webawesome-form is a Django app that provides a custom form renderer for WebAwesome 
