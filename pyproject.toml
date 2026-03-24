@@ -37,6 +37,4 @@ classifiers = [
 Homepage = "https://github.com/fem-modena/django-webawesome-form"
 
 [tool.uv.build-backend]
-module-name = "django_webawesome_form"
-module-root = ""
 source-include = ["django_polls/templates/**/*"]
