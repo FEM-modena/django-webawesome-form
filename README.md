@@ -30,6 +30,53 @@ FORM_RENDERER = "django_webawesome_form.renderers.WebAwesomeTemplateSettings"
 3. Make sure to [include WebAwesome](https://webawesome.com/docs/) in every template where you 
    want to use the form renderer. 
 
+## Notable changes
+### The label element
+WebAwesome custom form elements introduce a significant change to how labels are handled. While in standard 
+HTML we always have a `<label for="">` element for the form field (e.g., `<input id="">`), in 
+WebAwesome, the label is either an attribute of the element or a slot.
+
+Example:
+```html
+<!-- Traditional HTML -->
+<form>
+  <label for="my-form-name">Your Name</label>
+  <input id="my-form-name" type="text">
+</form>
+```
+
+```html
+<!-- WebAwesome HTML -->
+<form>
+  <wa-input id="my-form-name" type="text" label="Your Name"></wa-input>
+</form>
+```
+
+### Slots
+Slots are a feature of the Custom Element. Using slots, the custom element user can define HTML 
+elements to slot into the custom element. 
+
+Web Awesome uses slots extensively, and in particular to allow HTML content to be used in labels.
+When using this library, the content of the "label" attribute (in Django) will be used to write 
+a `div` element with the slot attribute.
+
+```python
+from django.forms import Form, CharField
+
+
+class MyForm(Form):
+    my_input = CharField(label="This is <strong>important!</strong>")
+```
+
+Using HTML in the label attribute would break if used in a HTML attribute; so this content is 
+_slotted in_ the Custom Element. The python code will render this HTML code:
+
+```html
+<wa-input name="my_input">
+ <div slot="label">This is <strong>important!</strong></div>
+</wa-input>
+```
+
 ## Widgets
 ### Radio Select
 If you are using the Django form `RadioSelect` widget, use the supplied widget instead.
@@ -95,24 +142,3 @@ class MyForm(Form):
 ## Dependencies
 This Django app uses a feature of Django 5.2: the `bound_field_class` of the form renderer 
 class. See the [Django documentation](https://docs.djangoproject.com/en/5.2/ref/forms/renderers/#django.forms.renderers.BoundField) for more details.
-
-## The label element
-WebAwesome custom form elements introduce a significant change to how labels are handled. While in standard 
-HTML we always have a `<label for="">` element for the form field (e.g., `<input id="">`), in 
-WebAwesome, the label is either an attribute of the element or a slot.
-
-Example:
-```html
-<!-- Traditional HTML -->
-<form>
-  <label for="my-form-name">Your Name</label>
-  <input id="my-form-name" type="text">
-</form>
-```
-
-```html
-<!-- WebAwesome HTML -->
-<form>
-  <wa-input id="my-form-name" type="text" label="Your Name"></wa-input>
-</form>
-```
