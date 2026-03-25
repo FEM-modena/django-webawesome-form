@@ -1,7 +1,7 @@
-from django.forms.widgets import ChoiceWidget, CheckboxInput
+from django.forms import widgets
 
 
-class RadioSelect(ChoiceWidget):
+class RadioSelect(widgets.ChoiceWidget):
     template_name = "django/forms/widgets/radio.html"
     orientation = "horizontal"
     option_inherits_attrs = False
@@ -45,5 +45,17 @@ class RadioButtonSelect(RadioSelect):
     use_buttons = True
 
 
-class SwitchInput(CheckboxInput):
+class SwitchInput(widgets.CheckboxInput):
     template_name = "django/forms/widgets/switch.html"
+
+
+class DateInput(widgets.DateInput):
+    input_type = "date"
+
+
+class DateTimeInput(widgets.DateTimeInput):
+    input_type = "datetime-local"
+
+
+class TimeInput(widgets.TimeInput):
+    input_type = "time"
