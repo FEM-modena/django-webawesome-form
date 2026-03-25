@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "django-webawesome-form"
-version = "0.3"
+version = "0.4"
 dependencies = [
     "django>=5.2",
 ]
